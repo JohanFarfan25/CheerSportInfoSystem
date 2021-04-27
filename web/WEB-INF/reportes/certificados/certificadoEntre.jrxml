@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="a24046bf-2e77-44c4-8f0f-a29c83445376">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="codigo" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     persona.`codigo` AS persona_codigo,
+     persona.`nombre` AS persona_nombre,
+     persona.`apellidos` AS persona_apellidos,
+     persona.`Telefono` AS persona_Telefono,
+     persona.`sexo` AS persona_sexo,
+     persona.`Tipo_Documento` AS persona_Tipo_Documento,
+     persona.`Documento` AS persona_Documento,
+     persona.`Edad` AS persona_Edad,
+     persona.`Factor_De_Riezgo` AS persona_Factor_De_Riezgo,
+     persona.`fechaNacimiento` AS persona_fechaNacimiento,
+     persona.`email` AS persona_email
+FROM
+     `persona` persona
+WHERE
+      persona.`codigo` = $P{codigo}]]>
+	</queryString>
+	<field name="persona_codigo" class="java.lang.Integer"/>
+	<field name="persona_nombre" class="java.lang.String"/>
+	<field name="persona_apellidos" class="java.lang.String"/>
+	<field name="persona_Telefono" class="java.lang.Integer"/>
+	<field name="persona_sexo" class="java.lang.String"/>
+	<field name="persona_Tipo_Documento" class="java.lang.String"/>
+	<field name="persona_Documento" class="java.lang.Integer"/>
+	<field name="persona_Edad" class="java.lang.Integer"/>
+	<field name="persona_Factor_De_Riezgo" class="java.lang.String"/>
+	<field name="persona_fechaNacimiento" class="java.sql.Date"/>
+	<field name="persona_email" class="java.lang.String"/>
+	<title>
+		<band height="128" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="0" y="0" width="802" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="8807268a-c7be-429a-82b8-17def2039c9c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="24" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System                                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="273" y="80" width="193" height="48" uuid="fbd8d933-5a93-4b19-9159-93bf633dd8e0"/>
+				<textElement textAlignment="Right">
+					<font size="36"/>
+				</textElement>
+				<text><![CDATA[Certifica           ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="318" splitType="Stretch">
+			<textField>
+				<reportElement x="499" y="39" width="121" height="25" uuid="9ce05189-f208-4f61-98ef-afe811077472"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_Documento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="70" y="123" width="620" height="158" uuid="524b4c22-db76-4931-9c72-cda7e13a38bb"/>
+				<textElement textAlignment="Center">
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Curso y aprobó la capacitación del sistema de información Cheerleading Sports Information system, enfocada en el uso adecuado del sistema como rol entrenador, cumpliendo con todos los requerimientos para realizar los procesos en este.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="469" y="39" width="30" height="25" uuid="7cb85493-91eb-436b-b413-37c74fcdf5eb"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_Tipo_Documento}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="160" y="281" width="460" height="29" forecolor="#000000" backcolor="#00667D" uuid="a823deaf-a26d-46d7-b498-86898fed029d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="18" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Certify generated on the day" + " " + new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<frame>
+				<reportElement mode="Opaque" x="160" y="281" width="460" height="29" forecolor="#D0B48E" backcolor="#006699" uuid="846cacd9-aff9-4b3a-92c2-55a6632e6cec"/>
+			</frame>
+			<textField>
+				<reportElement x="324" y="39" width="160" height="24" uuid="4cea9d06-8e97-4336-84e8-c6ab3b82f6bc"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="38" width="151" height="25" uuid="23adbaa5-8f50-4ff5-9e98-76bca4b3cb92"/>
+				<textElement>
+					<font size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{persona_nombre}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="39" width="480" height="56" uuid="48bedbaf-d469-46ab-b938-341058ffc2bc"/>
+				<textElement textAlignment="Justified">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Que                                                    con                              ]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="160" y="281" width="460" height="29" forecolor="#000000" backcolor="#00667D" uuid="aab498d1-b0b1-4388-a731-5b51c3648722"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="18" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Certify generated on the day" + " " + new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="26" forecolor="#D0B48E" backcolor="#006699" uuid="35df5fa6-9c7c-44c5-82bd-545c6daa2c67"/>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="0" y="0" width="579" height="16" forecolor="#FFFFFF" uuid="11576797-7012-4923-96fc-2079de09d908"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Cra. 13 #65-10 Chapinero Bogotá D.C"  + " Tel: 3227111889 "  +  " gaesadsisena@gmail.com "]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="dabd6f3d-d0d5-425e-b438-5209665bb6c6"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="a34ce07d-5cd5-4264-88d0-1fdcde553f51"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

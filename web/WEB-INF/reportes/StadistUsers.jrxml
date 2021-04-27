@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="eb050fac-23ff-42a8-9a79-bb121fc3f786">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Deportista') UNION
+
+SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Entrenador') UNION
+
+SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Administrador')]]>
+	</queryString>
+	<field name="COUNT(*)" class="java.lang.Long"/>
+	<field name="Tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="2" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="5e0263c9-61d1-4532-8570-634c511a4ffc"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="233" y="67" width="568" height="37" uuid="3699a811-1781-4547-aec4-02d47be774c2"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[USERS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="5" y="84" width="341" height="20" uuid="1819f4fd-577b-4a57-b585-3f8a650d51b9"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="231" splitType="Stretch">
+			<barChart>
+				<chart>
+					<reportElement x="366" y="0" width="372" height="231" uuid="c40fad4c-b263-4d22-93b2-6235d5429d95"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Tipo}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{COUNT(*)}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COUNT(*)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<barPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</barPlot>
+			</barChart>
+			<componentElement>
+				<reportElement x="33" y="0" width="270" height="217" uuid="8d9fc2b4-4037-40c3-a32d-9920270527f6"/>
+				<sc:spiderChart xmlns:sc="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<sc:chartSettings>
+						<chartTitle/>
+						<chartSubtitle/>
+						<chartLegend/>
+					</sc:chartSettings>
+					<sc:spiderDataset>
+						<categorySeries>
+							<seriesExpression><![CDATA[$F{Tipo}]]></seriesExpression>
+							<categoryExpression><![CDATA[$F{Tipo}]]></categoryExpression>
+							<valueExpression><![CDATA[$F{COUNT(*)}]]></valueExpression>
+							<labelExpression><![CDATA[$F{Tipo}]]></labelExpression>
+						</categorySeries>
+					</sc:spiderDataset>
+					<sc:spiderPlot isWebFilled="true"/>
+				</sc:spiderChart>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="53" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="17" width="800" height="36" forecolor="#D0B48E" backcolor="#006699" uuid="d70c1227-c6c3-4340-8996-c0d59956f4e9"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="c26bc04b-c1b3-4ae2-8eee-d8ee3116a16b"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="1d6b59fb-6d09-4a6b-9d66-1856cd953900"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="8e006581-295f-41ec-9eda-04753a8826e8"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

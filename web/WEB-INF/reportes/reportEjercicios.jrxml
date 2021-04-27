@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="a90c3349-ba19-499f-bc5b-960a7b67eb15">
+	<property name="ireport.zoom" value="2.1435888100000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     ejercicios.`IdEjercicios` AS ejercicios_IdEjercicios,
+     ejercicios.`Nombre_Ejercicio` AS ejercicios_Nombre_Ejercicio,
+     ejercicios.`Descripcion` AS ejercicios_Descripcion,
+     ejercicios.`Categoria_Ejercicio` AS ejercicios_Categoria_Ejercicio
+FROM
+     `ejercicios` ejercicios]]>
+	</queryString>
+	<field name="ejercicios_IdEjercicios" class="java.lang.Integer"/>
+	<field name="ejercicios_Nombre_Ejercicio" class="java.lang.String"/>
+	<field name="ejercicios_Descripcion" class="java.lang.String"/>
+	<field name="ejercicios_Categoria_Ejercicio" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="232" y="67" width="568" height="37" uuid="25cbee21-48b2-4e5d-9c79-b1ae11260bda"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Exercises]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="2" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="e21da77d-257d-4f54-b97e-6379a38c7e4a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="84" width="230" height="20" uuid="71368adf-454e-4264-932e-20178be50fb9"/>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="0" width="802" height="25" backcolor="#666666" uuid="838a1ef9-9461-4bb6-a920-ec91a557f27a"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="4" width="71" height="15" uuid="2c2ee933-9627-4edd-a17b-d2262d09803a"/>
+					<text><![CDATA[Id Exercise]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="84" y="4" width="162" height="15" uuid="67c3e77f-9d58-4e9f-bc65-232630ea9159"/>
+					<text><![CDATA[Name of Exercise]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="257" y="4" width="452" height="15" uuid="f5291297-77f9-4ccf-b138-fa59eb6bf43a"/>
+					<text><![CDATA[Description]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="715" y="4" width="85" height="15" uuid="e3c006e7-38e3-45b4-aeb5-d75559b3a7d8"/>
+					<text><![CDATA[Category]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="79" splitType="Stretch">
+			<frame>
+				<reportElement x="-2" y="0" width="802" height="79" uuid="31bb7013-ed4d-4d2a-8d65-c3d07363122e"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="3" width="71" height="15" uuid="fa8cf99c-821c-420a-acfa-bbace85d545c"/>
+					<textFieldExpression><![CDATA[$F{ejercicios_IdEjercicios}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="259" y="3" width="452" height="75" uuid="6bd5beea-0eae-40de-acbb-65b4d4e80504"/>
+					<textFieldExpression><![CDATA[$F{ejercicios_Descripcion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="728" y="3" width="65" height="15" uuid="8a975ab5-a837-4642-98ef-c6621a100434"/>
+					<textFieldExpression><![CDATA[$F{ejercicios_Categoria_Ejercicio}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="2" y="78" width="800" height="1" uuid="09baeb1e-c802-4862-a09a-c6fce7ec0abc"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="85" y="3" width="161" height="15" uuid="93be20d3-c668-43c8-abec-cb9aeb3c08b1"/>
+				<textFieldExpression><![CDATA[$F{ejercicios_Nombre_Ejercicio}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="26" forecolor="#D0B48E" backcolor="#006699" uuid="b9a4d29c-1bfa-4397-92aa-26f69810b566"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="1a248b5e-6060-4974-9efe-eee60b09894d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="a512a6f1-3733-48f6-bdac-a09dcaf9d76b"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="b8935641-502c-4c6a-803d-05b8d012c1d4"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

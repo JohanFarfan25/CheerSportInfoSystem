@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+
+        <ui:composition>
+            <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>${panel}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="page-header float-right">
+                                <div class="page-title">
+                                    <ol class="breadcrumb text-right">
+                                        <li><a href="#">Inicio sesion</a></li>
+                                        <li class="active"><a href="#">${panel}</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <!-- Animated -->
+                <div class="animated fadeIn">
+
+
+                    <div class=" content-wrapper d-flex justify-content-center" >
+
+                        <div class="col-6 card">
+                            <div class="container">
+                                <div class="login-content">
+                                    <div class="login-logo">
+                                        <a href="../index.xhtml">
+                                            <img class="align-content" src="../images/logo.png" alt=""/>
+                                        </a>
+                                    </div>
+                                    <div class="login-form">
+                                        <h:form>
+                                            <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+                                            <div class="form-group">
+                                                <label>Nombres </label>
+                                                <h:inputText required="true" requiredMessage="Ingrese sus nombres" id="regNombres" value="#{registerView.objPersona.nombre}" class="form-control" html5:placeholder="Nombres"/>
+                                                <h:message style="color: red" for="regNombres"></h:message>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Apellidos </label>
+                                                <h:inputText required="true" requiredMessage="Ingrese sus apellidos" id="regApellidos" value="#{registerView.objPersona.apellidos}" class="form-control" html5:placeholder="Apellidos"/>
+                                                <h:message style="color: red" for="regApellidos"></h:message>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Genero</label>
+                                                <h:selectOneMenu  value="#{registerView.objPersona.sexo}" requiredMessage="Ingrese sus genero" id="regGenero" class="form-control">
+                                                    <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                    <f:selectItem itemValue="M" itemLabel="Masculino"/>
+                                                    <f:selectItem itemValue="F" itemLabel="Femenino"/> 
+                                                </h:selectOneMenu>
+                                                <h:message style="color: red" for="regGenero"></h:message>
+
+
+                                            </div>
+
+
+
+                                            <div class="form-group">
+                                                <label>Tipo de documento </label>
+                                                <h:selectOneMenu  value="#{registerView.objPersona.tipoDocumento}"  requiredMessage="Ingrese se tipo de documento" id="regT" class="form-control">
+                                                    <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                    <f:selectItem itemValue="CC" itemLabel="Cedula De Ciudadania"/>
+                                                    <f:selectItem itemValue="TI" itemLabel="Tarjeta De Identidad"/>
+                                                    <f:selectItem itemValue="CE" itemLabel="Cedula De Extrangeria"/> 
+                                                </h:selectOneMenu>
+                                                <h:message style="color: red" for="regT"></h:message>
+
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label>Numero documento </label>
+                                                <h:inputText id="regDocumento" required="true" requiredMessage="Ingrese un numero de documento" value="#{registerView.objPersona.documento}" class="form-control" html5:placeholder="Numero documento"/>
+                                                <h:message style="color: red" for="regDocumento"></h:message>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Edad </label>
+                                                <h:inputText id="regEdad" required="true" requiredMessage="Ingrese su edad" value="#{registerView.objPersona.edad}" class="form-control" html5:placeholder="Edad"/>
+                                                <h:message style="color: red" for="regEdad"></h:message>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>Factor de riesgo </label>
+                                                <h:inputText required="true" requiredMessage="Ingrese su factor de riesgo" id="regriesgo" value="#{registerView.objPersona.factorDeRiezgo}" class="form-control" html5:placeholder="Factor de riesgo"/>
+                                                <h:message style="color: red" for="regriesgo"></h:message>
+                                            </div>
+
+                                            <p:outputLabel for="txtfechaNacimiento" value="Fecha de Nacimiento"/>
+                                            <p:calendar id="txtfechaNacimiento" value="#{registerView.objPersona.fechaNacimiento}" required="true" requiredMessage="Campo requerido"/>
+                                            <p:message for="txtfechaNacimiento"/>
+
+
+
+                                            <div class="form-group">
+                                                <label>Tipo de persona </label>
+                                                <h:selectOneMenu  value="#{registerView.objUsuario.tipo}"  requiredMessage="Ingrese su tipo de usuario" id="regTipous" class="form-control" html5:placeholder="Tipo de usuario">
+                                                    <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                    <f:selectItem itemValue="Administrador" itemLabel="Administrador" />
+                                                    <f:selectItem itemValue="Entrenador" itemLabel="Entrenador" />
+                                                    <f:selectItem itemValue="Deportista" itemLabel="Deportista" />
+                                                </h:selectOneMenu>
+                                                <h:message style="color: red" for="regTipous"></h:message>
+
+                                            </div>
+
+                                            <p:fieldset legend="Datos De Usuario">
+                                                <div class="form-group">
+                                                    <label>Usuario </label>
+                                                    <h:inputText required="true" requiredMessage="Nombre de Usuario" id="regUsuario" value="#{registerView.name}" class="form-control" html5:placeholder="Nombre de Usuario"/>
+                                                    <h:message style="color: red" for="regUsuario"></h:message>
+                                                </div>
+
+
+
+
+                                                <div class="form-group">
+                                                    <label>Dirección de correo electrónico</label>
+                                                    <h:inputText required="true"  requiredMessage="Ingrese un correo" id="regCorreo" value="#{registerView.email}" class="form-control" html5:placeholder="Correo electrónico"/>
+                                                    <h:message style="color: red" for="regCorreo"></h:message>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Rol </label>
+                                                    <h:selectOneMenu  value="#{registerView.roll}"  requiredMessage="Ingrese el tipo de rol" id="regTipous" class="form-control" html5:placeholder="tipo de rol">
+                                                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItem itemValue="users" itemLabel="users"/>
+                                                        <f:selectItem itemValue="administrador" itemLabel="administrador"/>
+                                                        <f:selectItem itemValue="entrenador" itemLabel="entrenador"/> 
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="regTipous"></h:message>
+
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Clave</label>
+                                                    <h:inputSecret required="true" requiredMessage="Ingrese una clave" id="regClave"  value="#{registerView.password}" class="form-control" html5:placeholder="Clave"/>
+                                                    <h:message style="color: red" for="regClave"></h:message>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label>Clave</label>
+                                                    <h:inputSecret required="true" requiredMessage="Confirme su clave" id="regClave"  value="#{registerView.confirmPassword}" class="form-control" html5:placeholder="Confirme su clave"/>
+                                                    <h:message style="color: red" for="confirmpassword"></h:message>
+                                                </div>
+                                            </p:fieldset>
+
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox"/> Acepta los términos y la políticas
+                                                </label>
+                                            </div>
+                                            <h:commandButton action="#{registroPersonaController.registrar()}"   class="btn btn-primary btn-flat m-b-30 m-t-30" value="Registrar Usuario"/>
+                                            <div class="social-login-content">
+
+                                            </div>
+                                            <div class="register-link m-t-15 text-center">
+                                                <p>Shreerleading Sports Information Systems</p>
+                                            </div>
+                                        </h:form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div></div>
+
+                </div>
+
+
+            </div><!-- .animated -->
+            <!-- .animated -->
+
+
+        </ui:composition>
+
+
+
+    </h:body>
+</html>
+

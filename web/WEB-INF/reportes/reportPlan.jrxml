@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="c3ec7023-23e5-483e-9144-d0272ff249a6">
+	<property name="ireport.zoom" value="1.3310000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     plan_de_entrenamiento.`IdPlan` AS plan_de_entrenamiento_IdPlan,
+     plan_de_entrenamiento.`IdDeportista` AS plan_de_entrenamiento_IdDeportista,
+     plan_de_entrenamiento.`IdNivel` AS plan_de_entrenamiento_IdNivel,
+     plan_de_entrenamiento.`Fecha_Creacion` AS plan_de_entrenamiento_Fecha_Creacion,
+     plan_de_entrenamiento.`Fecha_Inicio` AS plan_de_entrenamiento_Fecha_Inicio,
+     plan_de_entrenamiento.`Fecha_Final` AS plan_de_entrenamiento_Fecha_Final,
+     plan_de_entrenamiento.`IdEjercicio_1` AS plan_de_entrenamiento_IdEjercicio_1,
+     plan_de_entrenamiento.`IdEjercicio_2` AS plan_de_entrenamiento_IdEjercicio_2,
+     plan_de_entrenamiento.`IdEjercicio_3` AS plan_de_entrenamiento_IdEjercicio_3,
+     plan_de_entrenamiento.`IdEjercicio_4` AS plan_de_entrenamiento_IdEjercicio_4,
+     plan_de_entrenamiento.`IdEntrenador` AS plan_de_entrenamiento_IdEntrenador,
+     plan_de_entrenamiento.`Estado` AS plan_de_entrenamiento_Estado
+FROM
+     `plan_de_entrenamiento` plan_de_entrenamiento]]>
+	</queryString>
+	<field name="plan_de_entrenamiento_IdPlan" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdDeportista" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdEntrenador" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdNivel" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdEjercicio_1" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdEjercicio_2" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdEjercicio_3" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_IdEjercicio_4" class="java.lang.Integer"/>
+	<field name="plan_de_entrenamiento_Fecha_Creacion" class="java.sql.Timestamp"/>
+	<field name="plan_de_entrenamiento_Fecha_Inicio" class="java.sql.Date"/>
+	<field name="plan_de_entrenamiento_Fecha_Final" class="java.sql.Date"/>
+	<field name="plan_de_entrenamiento_Estado" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="348" y="67" width="452" height="37" uuid="e989ee61-8510-4c6c-9d2e-085a6549bab1"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Trainning Plans]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="8" y="84" width="320" height="20" uuid="30f31daf-c21d-498c-9c43-607d0164f8f1"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="2" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="514bfd06-5961-44c5-a9ad-e344286cef7e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="0" y="5" width="802" height="20" backcolor="#666666" uuid="a33eabfe-efca-4447-83cd-b103f80ea715"/>
+				<staticText>
+					<reportElement style="Column header" x="0" y="0" width="42" height="15" uuid="83b9039d-1494-487b-9f30-7cf6097270e9"/>
+					<text><![CDATA[Id Plan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="50" y="0" width="72" height="15" uuid="6b974872-7805-4eb5-a400-4a54e90f6065"/>
+					<text><![CDATA[Id SportMan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="127" y="0" width="58" height="15" uuid="fa5517f5-4b98-4ae7-a5de-924cdacc8888"/>
+					<text><![CDATA[Id Coach]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="185" y="0" width="47" height="15" uuid="dc3a4d6c-a836-4ef4-9af5-59dba4bfdccd"/>
+					<text><![CDATA[Id Nivel]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="244" y="0" width="46" height="15" uuid="39360c6a-419d-4e1d-9b6d-1985d59b962f"/>
+					<text><![CDATA[Id Eje 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="300" y="0" width="48" height="15" uuid="0cea11f0-c686-4559-af2f-75dc165a3de9"/>
+					<text><![CDATA[Id Eje 2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="366" y="0" width="45" height="15" uuid="0cb983d0-5a62-41dd-b4da-e47b837a1ca5"/>
+					<text><![CDATA[Id Eje 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="419" y="0" width="45" height="15" uuid="d957fcea-afe0-45ed-87d9-1c187f89a3c7"/>
+					<text><![CDATA[Id Eje 4]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="474" y="0" width="80" height="15" uuid="46b35022-e7e9-4f6a-8b89-d781cde4a204"/>
+					<text><![CDATA[Creation date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="564" y="0" width="83" height="15" uuid="8a31e61b-8c4b-45c3-81c1-998659d60877"/>
+					<text><![CDATA[Stard Date]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="647" y="0" width="85" height="15" uuid="39185ca9-bfc7-4904-b036-2c011bd46f6d"/>
+					<text><![CDATA[End Date]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="742" y="5" width="58" height="15" uuid="a206ac9b-7585-49fc-9a9f-ee80e55bba78"/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="1" width="802" height="15" uuid="461a04d1-d976-473e-8d22-b51ca7e01cd5"/>
+				<textField>
+					<reportElement style="Detail" x="0" y="0" width="42" height="15" uuid="aaeb098f-1d8c-408c-a9b6-11fd77c89224"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdPlan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="50" y="0" width="72" height="15" uuid="a2e25fb2-a492-4690-95b2-b187e2d971d2"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdDeportista}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="127" y="0" width="58" height="15" uuid="1c59fbdc-337e-489e-a707-c67e4e17b576"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdEntrenador}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="185" y="0" width="47" height="15" uuid="5002b795-2a1b-46c5-abc7-1874263de0c2"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdNivel}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="244" y="0" width="46" height="15" uuid="f20a6be1-5e28-4f6a-9352-cd0e2f34da5f"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdEjercicio_1}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="300" y="0" width="48" height="15" uuid="883339e1-4f30-44fc-aac8-f89f151f0ea8"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdEjercicio_2}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="366" y="0" width="45" height="15" uuid="0bcf64fd-993c-4b81-a8e7-97a828069885"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdEjercicio_3}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="419" y="0" width="45" height="15" uuid="f874a7d5-5e6a-44d2-87f5-c8200c774c16"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_IdEjercicio_4}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="564" y="0" width="83" height="15" uuid="16f4a967-a54d-44a2-91ba-9dca116cf6b9"/>
+					<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_Fecha_Inicio}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="16" width="802" height="1" uuid="5bc07744-ec1c-41ad-b048-68ee04ea5eab"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="742" y="0" width="58" height="15" uuid="588c6a57-2454-48b1-8322-e943c87ed64e"/>
+				<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_Estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="647" y="0" width="85" height="15" uuid="2205e206-1872-4793-8cbf-84c20e310014"/>
+				<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_Fecha_Final}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="474" y="1" width="80" height="15" uuid="0be48a7c-a284-42b4-9c39-80336f861cbc"/>
+				<textFieldExpression><![CDATA[$F{plan_de_entrenamiento_Fecha_Creacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="36" forecolor="#D0B48E" backcolor="#006699" uuid="3d2e4905-af60-4476-9066-bb23a2edf9a3"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="468fc70a-c10b-4820-a5c1-769c2872ab91"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="bc0e7105-fa7b-49f2-ae58-ccc9008d537a"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="a943432e-71c2-4ce5-bc24-886efe375bdf"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition>
+
+            <header id="header" class="header">
+                <div class="row top-left">
+                    <div class="navbar-header content d-flex justify-content-start"> 
+
+                        <a class="col-1 navbar-brand" href="../privatepage.xhtml"><img src="images/logo2.png" alt="Logo" width="40" height="38"/></a>
+                        <a class=" col-4 navbar-brand" href="../privatepage.xhtml">#{loginView.authenticatedUser.name}</a>
+
+                        <a id="menuToggle" class=" col-3 menutoggle"><i class="fa fa-bars"></i></a>
+
+                    </div>
+                </div>
+                <div class="top-right">
+                    <div class="header-menu">
+                        <div class="header-left">
+                            <button class="search-trigger"><i class="fa fa-search"></i></button>
+                            <div class="form-inline">
+                                <form class="search-form">
+                                    <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search"/>
+                                    <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                                </form>
+                            </div>
+
+
+                        </div>
+
+                        <div class="user-area dropdown float-right">
+                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="user-avatar rounded-circle" src="images/logo2.png" alt="Logo"/>
+                            </a>
+
+                            <div class="user-menu dropdown-menu">
+                                <a class="nav-link" href="#"><i class="fa fa- user"></i>#{loginView.authenticatedUser.name}</a>
+                                <h:form>
+                                    <h:commandLink action="#{loginView.logout}" value="Cerrar Sesión" class="fa fa-power -off"/>
+                                </h:form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+        </ui:composition>
+    </h:body>
+</html>
+

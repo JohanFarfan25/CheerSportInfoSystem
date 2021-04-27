@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="0b2a8651-3a73-4b15-9b8c-33895a716926">
+	<property name="ireport.zoom" value="0.8264462809917354"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<subDataset name="dataset1" uuid="0d67a141-02f0-4d53-b6e2-d2b3f151ca09"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(*), 
+`IdNivel` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE IdNivel = (1)
+
+UNION 
+SELECT COUNT(*), 
+`IdNivel` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE IdNivel = (2)
+
+UNION 
+SELECT COUNT(*), 
+`IdNivel` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE IdNivel = (3)
+
+UNION
+SELECT COUNT(*), 
+`Estado` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE Estado = ('Activo') 
+
+UNION 
+SELECT COUNT(*), 
+`Estado` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE Estado = ('Inactivo')
+]]>
+	</queryString>
+	<field name="COUNT(*)" class="java.lang.Long"/>
+	<field name="IdNivel" class="java.lang.String">
+		<fieldDescription><![CDATA[Identificacion de la Clase Nivel]]></fieldDescription>
+	</field>
+	<title>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="1" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="9e186d60-2028-43b9-94c6-38d5df0284fe"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="499" y="71" width="284" height="37" uuid="4dac6d68-5c79-48d7-84d8-ed631015602b"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Trainning Plans]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="63" y="88" width="375" height="20" uuid="25dc4069-9f32-4fc2-a5d0-a4b84ed63847"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="367" splitType="Stretch">
+			<staticText>
+				<reportElement x="141" y="154" width="91" height="20" forecolor="#FF3300" uuid="6cd9d6be-bd26-456a-9a2a-bd6be78c7c48"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Novato ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="174" width="91" height="20" forecolor="#3333FF" uuid="76cc51a3-102a-4cbe-832f-efd6480d2007"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Intermedio ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="194" width="91" height="20" forecolor="#33FF00" uuid="2ee3e6e9-f4ea-43cb-a73f-5ea61b131663"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Avanzado ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="214" width="58" height="20" forecolor="#FF9900" uuid="9dd64bc6-404c-425d-9ea8-3fcc370b5045"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Activo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="234" width="58" height="20" forecolor="#990099" uuid="74ca319b-84b2-4e66-9c49-436e0f6af0db"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[ Inactivo]]></text>
+			</staticText>
+			<stackedBar3DChart>
+				<chart>
+					<reportElement x="278" y="24" width="456" height="272" uuid="46b19f25-f182-4055-b7f4-4c6358c6fd9d"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{IdNivel}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{IdNivel}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COUNT(*)}]]></valueExpression>
+						<labelExpression><![CDATA[$F{IdNivel}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</stackedBar3DChart>
+			<staticText>
+				<reportElement x="111" y="234" width="68" height="20" forecolor="#000000" uuid="1fe4fdc5-1825-41cf-a060-8f484cf87c6b"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Estado =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="214" width="68" height="20" forecolor="#000000" uuid="146ff30b-b714-46c2-a982-a36d257ccc9d"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Estado =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="194" width="30" height="20" forecolor="#000000" uuid="22b245ca-ddb3-438c-81c7-6f4e2fa174eb"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[3 =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="174" width="30" height="20" forecolor="#000000" uuid="4000fc4e-236f-411f-b3ac-96a3c7e95dd6"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[2 =]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="154" width="30" height="20" forecolor="#000000" uuid="90db3b53-9b3b-43a8-9cf7-939d0f06e9e3"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[1 =]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="0" width="800" height="39" forecolor="#D0B48E" backcolor="#006699" uuid="a3492f59-9bb4-499f-bcd5-10c8bfec12fe"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="3812844c-0e9f-4973-b8e6-54380d8bcbfc"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="242dbe85-0a90-457c-a9a1-a6103675dc8d"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="a47f1b1f-8623-44b8-817f-1a68b605131d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

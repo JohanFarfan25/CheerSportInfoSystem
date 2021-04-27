@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+       <h:form id="form" >
+           
+       
+      <h:commandLink>
+                    <h:graphicImage url="../resources/img/Iconos/Pdf.png"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="PdfUsuarios" pageOnly="true"/>
+                </h:commandLink>
+
+                <h:commandLink>
+                    <h:graphicImage url="../resources/img/Iconos/Exel.png"/>
+                    <p:dataExporter type="xls" target="tbl" fileName="ExelUsuarios" pageOnly="true"/>
+                </h:commandLink>
+           
+      <p:dataTable id="tbl" var="inven" value="#{InventarioMaterialesJpaController.items}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         paginator="true" rows="10" style="margin-bottom:20px" >
+
+          <p:column class="id" filterBy="#{inven.idMaterial} " headerText="idMaterial"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Id Del Material" />
+                    </f:facet>
+                    <h:outputText value="#{inven.idMaterial}" />
+                </p:column>
+          
+              <p:column filterBy="#{inven.fechaIngreso}" headerText="fechaIngreso"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha De Ingreso"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.fechaIngreso}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+          
+                    <p:column filterBy="#{inven.nombreMaterial}" headerText="nombreMaterial"   filterMatchMode="contains"> 
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Del Material"/>
+                    </f:facet>
+                        <h:outputText value="#{inven.nombreMaterial}" />
+                </p:column>
+
+          
+                <p:column filterBy="#{inven.unidadesDisponibles}" headerText="unidadesDisponibles"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Unidades Disponibles"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.unidadesDisponibles}" />
+                </p:column >
+                
+                 <p:column filterBy="#{inven.categoria}" headerText="categoria"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Categoría"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.categoria}" />
+                </p:column >
+                
+                 <p:column filterBy="#{inven.idAdministrador}" headerText="idAdministrador"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Id Del Administrador"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.idAdministrador}" />
+                </p:column >
+
+ 
+          
+                    <p:column  headerText="Acción"  exportable="false" >
+                    <p:commandButton  style="margin-left: 40%" icon="ui-icon-pencil" title="Modificar"  actionListener="#{InventarioMaterialesJpaController.setSelected(inven)}" oncomplete="PF('wdialogo2').show();" update=":dialogo2"/>
+                 <!--   <p:commandButton style="margin-left: 5%" icon=" ui-icon-pencil" title="Editar " actionListener="" oncomplete="PF('modal').show();"  />
+                    <p:commandButton  style="margin-left: 5%" icon=" ui-icon-cancel" title="Eliminar" actionListener="" oncomplete="PF('modal').show();" /> -->
+                </p:column> 
+                
+                
+            </p:dataTable>
+
+        </h:form>
+        
+        
+       <p:dialog  header="Datos" widgetVar="wdialogo2" id="dialogo2"  resizable="true" width="800">
+            <h:form id="formulario">
+            
+                <h:panelGrid columns="4">
+                    <p:outputLabel value="Fecha_Ingreso"/>
+ 
+              
+                    <p:calendar value="#{InventarioMaterialesJpaController.selected.fechaIngreso}" >
+                  <f:convertDateTime pattern="dd/MM/yyyy"/>
+                  </p:calendar> 
+           
+                    
+                        <p:outputLabel value="Nombre_Material"/>
+                    
+                        <h:inputText value="#{InventarioMaterialesJpaController.selected.nombreMaterial}" />
+        
+      
+                  
+                        <p:outputLabel value="Unidades_Disponibles"/>
+                  
+                        <h:inputText value="#{InventarioMaterialesJpaController.selected.unidadesDisponibles}" />
+            
+                         
+                    <p:outputLabel value="Categoria"/>
+                    <p:selectOneMenu id="txtCategoria" value="#{InventarioMaterialesJpaController.selected.categoria}">
+                    <f:selectItem itemValue="Seguridad" itemLabel="Seguridad" />
+                    <f:selectItem itemValue="Ritmica" itemLabel="Ritmica" />
+                    <f:selectItem itemValue="Estatica" itemLabel="Estatica" />
+                    <f:selectItem itemValue="DePiso" itemLabel="De Piso" />
+                    </p:selectOneMenu>
+                         
+                         <p:outputLabel value="idAdministrador"/>
+                   
+                         <h:inputText value="#{InventarioMaterialesJpaController.selected.idAdministrador}" />
+         
+     
+                      
+
+                         <p:commandButton  style="margin-left: 5%" value="Guardar" title="Guardar"  actionListener="#{InventarioMaterialesJpaController.modificar()}" oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+                         
+                         
+                         <p:commandButton  style="margin-left: 5%" value="Eliminar" title="Eliminar"  actionListener="#{InventarioMaterialesJpaController.eliminar()}" oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+                </h:panelGrid>
+            </h:form>
+            
+        </p:dialog>
+    </h:body>
+</html>
+

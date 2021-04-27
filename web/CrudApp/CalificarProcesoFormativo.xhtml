@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Calificar Proceso Formativo</title>
+    </h:head>
+    <h:body>
+         <h:form id="formCalificacion1">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Calficación Semana 1">
+                <h:panelGrid columns="5" id="pgDatos">
+
+                    <p:outputLabel for="txtidPlan" value="Id Plan"/>                    
+                    <p:selectOneMenu required="true" id="txtidPlan" value="#{Semana1JpaController.selected.idPlan.idPlan}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana1JpaController.plan}" var="P" itemLabel="#{P.idDeportista.codigo.nombre}" itemValue="#{P.idPlan}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtidItems" value="Id Item"/>                    
+                    <p:selectOneMenu required="true" id="txtidItems" value="#{Semana1JpaController.selected.idItems.idItems}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana1JpaController.itemsE}" var="I" itemLabel="#{I.nombreItem}" itemValue="#{I.idItems}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidItems"/>
+                    
+                    <p:outputLabel for="txtcalificacion" value="Calificación"/>
+                        <p:inputText id="txtcalificacion" value="#{Semana1JpaController.selected.calificacion}"  required="true" requiredMessage="Campo requerido"/>
+                     <p:message for="txtcalificacion"/>
+
+                    </h:panelGrid>  
+
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Calificar" actionListener="#{Semana1JpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+        </h:form>
+        
+        <hr/>
+        
+        <h:form id="formCalificacion2">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Calficación Semana 2">
+                <h:panelGrid columns="5" id="pgDatos">
+
+                    <p:outputLabel for="txtidPlan" value="Id Plan"/>                    
+                    <p:selectOneMenu required="true" id="txtidPlan" value="#{Semana2JpaController.selected.idPlan.idPlan}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana2JpaController.plan}" var="P" itemLabel="#{P.idDeportista.codigo.nombre}" itemValue="#{P.idPlan}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtidItems" value="Id Item"/>                    
+                    <p:selectOneMenu required="true" id="txtidItems" value="#{Semana2JpaController.selected.idItems.idItems}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana2JpaController.itemsE}" var="I" itemLabel="#{I.nombreItem}" itemValue="#{I.idItems}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidItems"/>
+                    
+                    <p:outputLabel for="txtcalificacion" value="Calificación"/>
+                        <p:inputText id="txtcalificacion" value="#{Semana2JpaController.selected.calificacion}"  required="true" requiredMessage="Campo requerido"/>
+                     <p:message for="txtcalificacion"/>
+
+                    </h:panelGrid>  
+
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Calificar" actionListener="#{Semana2JpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+        </h:form>
+        
+        <hr/>
+        
+         <h:form id="formCalificacion3">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Calficación Semana 3">
+                <h:panelGrid columns="5" id="pgDatos">
+
+                    <p:outputLabel for="txtidPlan" value="Id Plan"/>                    
+                    <p:selectOneMenu required="true" id="txtidPlan" value="#{Semana3JpaController.selected.idPlan.idPlan}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana3JpaController.plan}" var="P" itemLabel="#{P.idDeportista.codigo.nombre}" itemValue="#{P.idPlan}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtidItems" value="Id Item"/>                    
+                    <p:selectOneMenu required="true" id="txtidItems" value="#{Semana3JpaController.selected.idItems.idItems}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana3JpaController.itemsE}" var="I" itemLabel="#{I.nombreItem}" itemValue="#{I.idItems}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidItems"/>
+                    
+                    <p:outputLabel for="txtcalificacion" value="Calificación"/>
+                        <p:inputText id="txtcalificacion" value="#{Semana3JpaController.selected.calificacion}"  required="true" requiredMessage="Campo requerido"/>
+                     <p:message for="txtcalificacion"/>
+
+                    </h:panelGrid>  
+
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Calificar" actionListener="#{Semana3JpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+         </h:form>
+        
+        <hr/>
+        
+        <h:form id="formCalificacion4">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Calficación Semana 4">
+                <h:panelGrid columns="5" id="pgDatos">
+
+                    <p:outputLabel for="txtidPlan" value="Id Plan"/>                    
+                    <p:selectOneMenu required="true" id="txtidPlan" value="#{Semana4JpaController.selected.idPlan.idPlan}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana4JpaController.plan}" var="P" itemLabel="#{P.idDeportista.codigo.nombre}" itemValue="#{P.idPlan}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtidItems" value="Id Item"/>                    
+                    <p:selectOneMenu required="true" id="txtidItems" value="#{Semana4JpaController.selected.idItems.idItems}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana4JpaController.itemsE}" var="I" itemLabel="#{I.nombreItem}" itemValue="#{I.idItems}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidItems"/>
+                    
+                    <p:outputLabel for="txtcalificacion" value="Calificación"/>
+                        <p:inputText id="txtcalificacion" value="#{Semana4JpaController.selected.calificacion}"  required="true" requiredMessage="Campo requerido"/>
+                     <p:message for="txtcalificacion"/>
+
+                    </h:panelGrid>  
+
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Calificar" actionListener="#{Semana4JpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+        </h:form>
+        
+    </h:body>
+</html>
+

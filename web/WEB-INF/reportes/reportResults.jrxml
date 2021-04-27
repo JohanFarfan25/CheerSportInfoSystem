@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="72072cf5-2d12-46dc-937c-1c6656d6ae58">
+	<property name="ireport.zoom" value="1.4641000000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     resultados1.`IdResultado` AS resultados1_IdResultado,
+     resultados1.`IdSemana1` AS resultados1_IdSemana1,
+     resultados1.`IdSemana2` AS resultados1_IdSemana2,
+     resultados1.`IdSemana3` AS resultados1_IdSemana3,
+     resultados1.`IdSemana4` AS resultados1_IdSemana4,
+     resultados1.`NotaFinal` AS resultados1_NotaFinal,
+     resultados1.`Resultado` AS resultados1_Resultado,
+     semana_1.`IdSemana1` AS semana_1_IdSemana1,
+     semana_1.`IdPlan` AS semana_1_IdPlan,
+     semana_1.`IdItems` AS semana_1_IdItems,
+     semana_1.`Calificacion` AS semana_1_Calificacion,
+     semana_2.`IdSemana2` AS semana_2_IdSemana2,
+     semana_2.`IdPlan` AS semana_2_IdPlan,
+     semana_2.`IdItems` AS semana_2_IdItems,
+     semana_2.`Calificacion` AS semana_2_Calificacion,
+     semana_3.`IdSemana3` AS semana_3_IdSemana3,
+     semana_3.`IdPlan` AS semana_3_IdPlan,
+     semana_3.`IdItems` AS semana_3_IdItems,
+     semana_3.`calificacion` AS semana_3_calificacion,
+     semana_4.`IdSemana4` AS semana_4_IdSemana4,
+     semana_4.`IdPlan` AS semana_4_IdPlan,
+     semana_4.`IdItems` AS semana_4_IdItems,
+     semana_4.`Calificacion` AS semana_4_Calificacion
+FROM
+     `semana_1` semana_1 INNER JOIN `resultados1` resultados1 ON semana_1.`IdSemana1` = resultados1.`IdSemana1`
+     INNER JOIN `semana_2` semana_2 ON resultados1.`IdSemana2` = semana_2.`IdSemana2`
+     INNER JOIN `semana_3` semana_3 ON resultados1.`IdSemana3` = semana_3.`IdSemana3`
+     INNER JOIN `semana_4` semana_4 ON resultados1.`IdSemana4` = semana_4.`IdSemana4`]]>
+	</queryString>
+	<field name="semana_1_IdPlan" class="java.lang.Integer"/>
+	<field name="semana_1_IdItems" class="java.lang.Integer"/>
+	<field name="semana_1_Calificacion" class="java.lang.Integer"/>
+	<field name="semana_2_IdItems" class="java.lang.Integer"/>
+	<field name="semana_2_Calificacion" class="java.lang.Integer"/>
+	<field name="semana_3_IdItems" class="java.lang.Integer"/>
+	<field name="semana_3_calificacion" class="java.lang.Integer"/>
+	<field name="semana_4_IdItems" class="java.lang.Integer"/>
+	<field name="semana_4_Calificacion" class="java.lang.Integer"/>
+	<field name="resultados1_NotaFinal" class="java.lang.Integer"/>
+	<field name="resultados1_Resultado" class="java.lang.String"/>
+	<background>
+		<band height="575" splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="104" splitType="Stretch">
+			<staticText>
+				<reportElement style="SubTitle" x="232" y="67" width="568" height="37" uuid="9c6648f2-836e-49b5-b4ab-25ea2f233467"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[Results Formative Processes]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="44" y="84" width="320" height="20" uuid="abd829d0-b7f3-4daa-a080-980f76a8dd71"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="2" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="234598f7-4e8e-4b98-ae52-65ef54676195"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="22" y="5" width="752" height="20" backcolor="#666666" uuid="162b903f-ebc9-45b7-9993-94616e893a0b"/>
+				<staticText>
+					<reportElement style="Column header" x="22" y="0" width="94" height="15" uuid="5e807be4-eadd-4053-8fea-185caf664852"/>
+					<text><![CDATA[Trainning Plan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="116" y="0" width="64" height="15" uuid="76e08078-5b49-408c-a987-7b76054e9c07"/>
+					<text><![CDATA[IdItems 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="181" y="0" width="64" height="15" uuid="ef92dd2a-42e0-4973-9ee9-ba6536c4278d"/>
+					<text><![CDATA[Result 1]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="244" y="0" width="64" height="15" uuid="8524af57-8b9d-4f91-b788-a8bc354a429d"/>
+					<text><![CDATA[IdItems 2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="309" y="0" width="64" height="15" uuid="252e7a7c-8898-4543-b1a9-fa5078c137b3"/>
+					<text><![CDATA[Result 2]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="372" y="0" width="64" height="15" uuid="52efecdd-fd30-494c-b56f-608d8760e452"/>
+					<text><![CDATA[IdItems 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="437" y="0" width="64" height="15" uuid="9f9a6402-588f-495e-8901-c8b77dbb0e99"/>
+					<text><![CDATA[Result 3]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="501" y="0" width="64" height="15" uuid="97734099-eeb8-4c42-88ff-7a9fe1f803b2"/>
+					<text><![CDATA[IdItems 4]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="565" y="0" width="64" height="15" uuid="1671d646-fcf0-44b7-97cb-1e78a7d2cc1f"/>
+					<text><![CDATA[Result 4]]></text>
+				</staticText>
+				<staticText>
+					<reportElement style="Column header" x="693" y="0" width="51" height="15" uuid="7e5fa718-6723-4ec8-8439-4863e69dee08"/>
+					<text><![CDATA[Status]]></text>
+				</staticText>
+			</frame>
+			<staticText>
+				<reportElement style="Column header" x="650" y="5" width="64" height="15" uuid="797dff2b-e950-4565-be4a-392e28208c75"/>
+				<text><![CDATA[Final Note]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<frame>
+				<reportElement x="22" y="1" width="752" height="15" uuid="a830bc68-6606-4085-8830-a407f6aa97a9"/>
+				<textField>
+					<reportElement style="Detail" x="22" y="0" width="92" height="15" uuid="2c19e0ab-e3e4-47a1-b4d8-6d23385b7864"/>
+					<textFieldExpression><![CDATA[$F{semana_1_IdPlan}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="117" y="0" width="64" height="15" uuid="1fa6f070-0a1d-43d0-a4e6-9cac1ff8839f"/>
+					<textFieldExpression><![CDATA[$F{semana_1_IdItems}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="180" y="0" width="64" height="15" uuid="8030f086-8b71-44a7-b51f-d0f5b852b7a6"/>
+					<textFieldExpression><![CDATA[$F{semana_1_Calificacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="245" y="0" width="64" height="15" uuid="60a47d3e-fe78-49d0-848b-27e87dbbc1de"/>
+					<textFieldExpression><![CDATA[$F{semana_2_IdItems}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="372" y="0" width="64" height="15" uuid="ef65c823-6a07-408c-b77e-3e610baa8cf1"/>
+					<textFieldExpression><![CDATA[$F{semana_3_IdItems}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="437" y="0" width="64" height="15" uuid="5315a49a-281c-4df6-91f9-e53c71577509"/>
+					<textFieldExpression><![CDATA[$F{semana_3_calificacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="501" y="0" width="64" height="15" uuid="2cd4303d-9b0b-49f9-b126-ea6eeefac261"/>
+					<textFieldExpression><![CDATA[$F{semana_4_IdItems}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="565" y="0" width="64" height="15" uuid="b3c3e5a2-d09c-401f-9eeb-192dbee6c29d"/>
+					<textFieldExpression><![CDATA[$F{semana_4_Calificacion}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Detail" x="628" y="0" width="64" height="15" uuid="ed256148-453f-469d-b3ad-00d07437a380"/>
+					<textFieldExpression><![CDATA[$F{resultados1_NotaFinal}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="22" y="17" width="752" height="1" uuid="92dc66f2-af3c-4a00-8c5f-fa054e5896e6"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="714" y="2" width="60" height="15" uuid="c5323ef9-9f7c-4162-afb4-d8b7ac12a762"/>
+				<textFieldExpression><![CDATA[$F{resultados1_Resultado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="330" y="0" width="64" height="15" uuid="67ea9613-ef35-4db4-a00d-b6aeb6958226"/>
+				<textFieldExpression><![CDATA[$F{semana_2_Calificacion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="3" width="800" height="36" forecolor="#D0B48E" backcolor="#006699" uuid="640991ad-e49a-4e75-8af8-9e3bd53fc272"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="16c152d3-c9e6-48f2-b00b-a87d8d95008a"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="db15eec8-e43b-483f-bb37-767ce4750869"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="12cc4c70-8129-4919-b757-49f946b140eb"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

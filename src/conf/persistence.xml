@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence     http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="primePU" transaction-type="JTA">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>jdbc/prime4</jta-data-source>
+    <class>com.club.model.Ejercicios</class>
+    <class>com.club.model.Group</class>
+    <class>com.club.model.InventarioMateriales</class>
+    <class>com.club.model.ItemsEvaluacion</class>
+    <class>com.club.model.Nivel</class>
+    <class>com.club.model.Persona</class>
+    <class>com.club.model.PlanDeEntrenamiento</class>
+    <class>com.club.model.Prestamo</class>
+    <class>com.club.model.Resultados1</class>
+    <class>com.club.model.Semana1</class>
+    <class>com.club.model.Semana2</class>
+    <class>com.club.model.Semana3</class>
+    <class>com.club.model.Semana4</class>
+    <class>com.club.model.User</class>
+    <class>com.club.model.Usuario</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <!--  tables will be created only if they do not exist. Use for production 
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            -->
+      <!--  will first drop the existing table, and then create the new table. Use for development 
+            <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+            -->
+      <property name="eclipselink.logging.level" value="INFO"/>
+    </properties>
+  </persistence-unit>
+</persistence>

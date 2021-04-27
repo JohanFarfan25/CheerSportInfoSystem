@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formEjercicios">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Calficación Semana 4">
+                <h:panelGrid columns="5" id="pgDatos">
+
+                    <p:outputLabel for="txtidPlan" value="Id Plan"/>                    
+                    <p:selectOneMenu required="true" id="txtidPlan" value="#{Semana4JpaController.selected.idPlan.idPlan}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana4JpaController.plan}" var="P" itemLabel="#{P.idPlan}" itemValue="#{P.idPlan}" />
+                    </p:selectOneMenu>
+
+                    <p:outputLabel for="txtidItems" value="Id Item"/>                    
+                    <p:selectOneMenu required="true" id="txtidItems" value="#{Semana4JpaController.selected.idItems.idItems}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{Semana4JpaController.itemsE}" var="I" itemLabel="#{I.idItems}" itemValue="#{I.idItems}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidItems"/>
+                    
+                    <p:outputLabel for="txtcalificacion" value="Calificación"/>
+                        <p:inputText id="txtcalificacion" value="#{Semana4JpaController.selected.calificacion}"  required="true" requiredMessage="Campo requerido"/>
+                     <p:message for="txtcalificacion"/>
+
+                    </h:panelGrid>  
+
+                    <br/>
+                    <p:commandButton icon="ui-icon-check" value="Calificar" actionListener="#{Semana4JpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+
+
+        </h:form>
+
+
+        <h:form id="DlgFrm">
+
+            <p:dialog  id="dlg1"  widgetVar="dlg1">
+                <p:dataTable id="datos"  value="#{PlanDeEntrenamientoJpaController.usuarios}" var="usr"> 
+                    <p:column>
+                        <p:commandButton  update=":formEjercicios" value="Seleccionar" oncomplete="PF('dlg1').hide()" actionListener="#{PlanDeEntrenamientoJpaController.selected.setIdDeportista(usr)}"/>     
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <h:outputText value="#{usr.codigo.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Apellidos" >
+                        <h:outputText value="#{usr.codigo.apellidos}"/>
+                    </p:column>
+                    <p:column headerText="Sexo" >
+                        <h:outputText value="#{usr.codigo.sexo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" >
+                        <h:outputText value="#{usr.tipo}"/>
+                    </p:column>
+
+                </p:dataTable>                                
+            </p:dialog>
+        </h:form>
+
+        <h:form id="DlgFrm2">
+
+            <p:dialog  id="dlg12"  widgetVar="dlg12">
+                <p:dataTable id="datos1"  value="#{PlanDeEntrenamientoJpaController.entrenador}" var="Entre"> 
+                    <p:column>
+                        <p:commandButton  update=":formEjercicios" value="Seleccionar" oncomplete="PF('dlg12').hide()" actionListener="#{PlanDeEntrenamientoJpaController.selected.setIdEntrenador(Entre)}"/>     
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <h:outputText value="#{Entre.codigo.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Apellidos" >
+                        <h:outputText value="#{Entre.codigo.apellidos}"/>
+                    </p:column>
+                    <p:column headerText="Sexo" >
+                        <h:outputText value="#{Entre.codigo.sexo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" >
+                        <h:outputText value="#{Entre.tipo}"/>
+                    </p:column>
+
+                </p:dataTable>                                
+            </p:dialog>
+        </h:form>
+
+
+        <hr/>
+    </h:body>
+</html>
+

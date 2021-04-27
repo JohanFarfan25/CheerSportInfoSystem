@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"/>
+
+    </h:head>
+    <h:body>
+        <h:form class="col-md-12" id="formEjercicios">
+            <br />
+            <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Datos Personales">
+                <h:panelGrid columns="3" id="pgDatos">
+                    <p:outputLabel for="txtnombre" value="Nombre"/>
+                    <p:inputText id="txtnombre" value="#{registerView.objPersona.nombre}"  required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtnombre"/>
+
+                    <p:outputLabel for="txtapellidos" value="Apellidos"/>
+                    <p:inputText id="txtapellidos" value="#{registerView.objPersona.apellidos}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtapellidos"/>
+
+                    <p:outputLabel for="rdbSexo" value="Sexo"/> 
+                    <p:selectOneMenu id="rdbSexo" value="#{registerView.objPersona.sexo}" required="true" requiredMessage="Campo requerido">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemValue="M" itemLabel="Masculino"/>
+                        <f:selectItem itemValue="F" itemLabel="Femenino"/>  
+                    </p:selectOneMenu>
+                    <p:message for="rdbSexo"/>
+
+                    <p:outputLabel for="rdbTipo_Documento" value="Tipo_Documento"/> 
+                    <p:selectOneMenu class="col-md-12" id="rdbTipo_Documento" value="#{registerView.objPersona.tipoDocumento}" required="true" requiredMessage="Campo requerido">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemValue="CC" itemLabel="Cedula De Ciudadania"/>
+                        <f:selectItem itemValue="TI" itemLabel="Tarjeta De Identidad"/>
+                        <f:selectItem itemValue="CE" itemLabel="Cedula De Extrangeria"/> 
+                    </p:selectOneMenu>
+                    <p:message for="rdbTipo_Documento"/>
+
+                    <p:outputLabel for="txtDocumento" value="Documento"/>
+                    <p:inputText id="txtDocumento" value="#{registerView.objPersona.documento}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtDocumento"/>
+
+                    <p:outputLabel for="txtedad" value="Edad"/>
+                    <p:inputText id="txtedad" value="#{registerView.objPersona.edad}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtedad"/>
+
+                    <p:outputLabel for="txtfactorDeRiezgo" value="Factor De Riesgo"/>
+                    <p:inputTextarea class="col-md-12" id="txtfactorDeRiezgo" value="#{registerView.objPersona.factorDeRiezgo}"/>
+                    <p:message for="txtfactorDeRiezgo"/>
+
+                    <p:outputLabel for="txtfechaNacimiento" value="Fecha de Nacimiento"/>
+                    <p:calendar id="txtfechaNacimiento" value="#{registerView.objPersona.fechaNacimiento}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtfechaNacimiento"/>
+                </h:panelGrid>  
+
+            </p:fieldset>
+            <p:fieldset legend="Datos De Usuario">
+                <h:panelGrid columns="3">   
+                    <p:outputLabel for="name" value="Name"/>
+                    <h:inputText id="name" value="#{registerView.name}" required="true" requiredMessage="Campo requerido"></h:inputText>
+                    <p:message for="name"/>
+                   
+                    <p:outputLabel for="email" value="E-Mail"/>
+                    <h:inputText id="email" value="#{registerView.email}" required="true" requiredMessage="Campo requerido">
+                        <f:validator validatorId="emailValidator" />
+                    </h:inputText>
+                    <p:message for="email"/>
+   
+                    <p:outputLabel for="Roll" value="Roll"/>
+                    <p:selectOneMenu   id="Roll" value="#{registerView.roll}" required="true" requiredMessage="Campo requerido">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemValue="users" itemLabel="users"/>
+                        <f:selectItem itemValue="administrador" itemLabel="administrador"/>
+                        <f:selectItem itemValue="entrenador" itemLabel="entrenador"/> 
+                    </p:selectOneMenu>
+                    <p:message for="Roll"/>
+
+
+                    <p:outputLabel for="password" value="E-Password"/>
+                    <h:inputSecret id="password" value="#{registerView.password}" required="true" requiredMessage="Campo requerido">     
+                    </h:inputSecret>
+                    <p:message for="password"/>
+   
+                    <p:outputLabel for="confirmpassword" value="Confirm password"/>
+                    <h:inputSecret id="confirmpassword" value="#{registerView.confirmPassword}" required="true" requiredMessage="Campo requerido"></h:inputSecret>
+                    <p:message for="confirmpassword"/>
+                </h:panelGrid>
+            </p:fieldset>   
+
+            <hr/>         
+            <h:commandButton  actionListener="#{registerView.register()}" value="Register" />
+        </h:form>
+        <hr/>
+        
+        <br/><br/><br/><br/>
+    </h:body>
+</html>
+

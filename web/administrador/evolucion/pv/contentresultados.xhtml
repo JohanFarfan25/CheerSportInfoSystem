@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body>
+
+        <ui:composition>
+            <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>${panel}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="page-header float-right">
+                                <div class="page-title">
+                                    <ol class="breadcrumb text-right">
+                                        <li><a href="../privatepage.xhtml">Home session</a></li>
+                                        <li class="active"><a href="#">${panel}</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="form-group text-center">   
+                    <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>  
+                </div> 
+                <!-- Animated -->
+                <div class="animated fadeIn">
+
+
+                    <div class=" content-wrapper d-flex justify-content-center" >
+
+                        <div class="col-lg-8 col-md-10 col-sm-12 card contentplan">
+                            <div class="container">
+                                <div class="login-content">
+                                    <div class="card-header text-center btn bg-blue btn-primary btn-block" style="padding-top: 20px">
+                                        <strong class="card-title " style="font-size: 20px">Ingrese la calificación del proceso formativo</strong>
+                                    </div>
+
+                                    <div class="login-form contentplan">
+                                        <h:form class="row">
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-arrows" style="color: #8e8e8e;"/> Id Plan </label>                   
+                                                    <h:selectOneMenu class="form-control" required="true" id="txtIdPan" value="#{resultadoEvolucion.plan}">
+                                                        <f:selectItem  itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItems value="#{resultadoEvolucion.listaPlan}" var="n" itemLabel="#{n.idPlan} #{n.idDeportista.codigo.nombre}" itemValue="#{n.idPlan}" />
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="txtIdPan"></h:message>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-male" style="color: #8e8e8e;"/> Postura</label>
+                                                    <h:selectOneMenu  value="#{resultadoEvolucion.semana1}"  requiredMessage="Postura" id="txtResult1" class="form-control">
+                                                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItem itemValue="10" itemLabel="10"/>
+                                                        <f:selectItem itemValue="20" itemLabel="20"/>
+                                                        <f:selectItem itemValue="30" itemLabel="30"/>
+                                                        <f:selectItem itemValue="40" itemLabel="40"/> 
+                                                        <f:selectItem itemValue="50" itemLabel="50"/> 
+                                                        <f:selectItem itemValue="60" itemLabel="60"/> 
+                                                        <f:selectItem itemValue="70" itemLabel="70"/> 
+                                                        <f:selectItem itemValue="80" itemLabel="80"/> 
+                                                        <f:selectItem itemValue="90" itemLabel="90"/> 
+                                                        <f:selectItem itemValue="100" itemLabel="100"/> 
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="txtResult1"></h:message>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-sort-amount-asc" style="color: #8e8e8e;"/> Precisión</label>
+                                                    <h:selectOneMenu  value="#{resultadoEvolucion.semana2}"  requiredMessage="Precisión" id="txtResult2" class="form-control">
+                                                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItem itemValue="10" itemLabel="10"/>
+                                                        <f:selectItem itemValue="20" itemLabel="20"/>
+                                                        <f:selectItem itemValue="30" itemLabel="30"/>
+                                                        <f:selectItem itemValue="40" itemLabel="40"/> 
+                                                        <f:selectItem itemValue="50" itemLabel="50"/> 
+                                                        <f:selectItem itemValue="60" itemLabel="60"/> 
+                                                        <f:selectItem itemValue="70" itemLabel="70"/> 
+                                                        <f:selectItem itemValue="80" itemLabel="80"/> 
+                                                        <f:selectItem itemValue="90" itemLabel="90"/> 
+                                                        <f:selectItem itemValue="100" itemLabel="100"/> 
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="txtResult2"></h:message>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-rocket" style="color: #8e8e8e;"/> Trabajo Acrobatico</label>
+                                                    <h:selectOneMenu  value="#{resultadoEvolucion.semana3}"  requiredMessage="Trabajo Acrobatico" id="txtResult3" class="form-control">
+                                                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItem itemValue="10" itemLabel="10"/>
+                                                        <f:selectItem itemValue="20" itemLabel="20"/>
+                                                        <f:selectItem itemValue="30" itemLabel="30"/>
+                                                        <f:selectItem itemValue="40" itemLabel="40"/> 
+                                                        <f:selectItem itemValue="50" itemLabel="50"/> 
+                                                        <f:selectItem itemValue="60" itemLabel="60"/> 
+                                                        <f:selectItem itemValue="70" itemLabel="70"/> 
+                                                        <f:selectItem itemValue="80" itemLabel="80"/> 
+                                                        <f:selectItem itemValue="90" itemLabel="90"/> 
+                                                        <f:selectItem itemValue="100" itemLabel="100"/> 
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="txtResult3"></h:message>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-smile-o" style="color: #8e8e8e;"/> Expresión corporal</label>
+                                                    <h:selectOneMenu  value="#{resultadoEvolucion.semana4}"  requiredMessage="Expresión corporal" id="txtResult4" class="form-control">
+                                                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                                                        <f:selectItem itemValue="10" itemLabel="10"/>
+                                                        <f:selectItem itemValue="20" itemLabel="20"/>
+                                                        <f:selectItem itemValue="30" itemLabel="30"/>
+                                                        <f:selectItem itemValue="40" itemLabel="40"/> 
+                                                        <f:selectItem itemValue="50" itemLabel="50"/> 
+                                                        <f:selectItem itemValue="60" itemLabel="60"/> 
+                                                        <f:selectItem itemValue="70" itemLabel="70"/> 
+                                                        <f:selectItem itemValue="80" itemLabel="80"/> 
+                                                        <f:selectItem itemValue="90" itemLabel="90"/> 
+                                                        <f:selectItem itemValue="100" itemLabel="100"/> 
+                                                    </h:selectOneMenu>
+                                                    <h:message style="color: red" for="txtResult4"></h:message>
+                                                </div>
+                                            </div>
+
+                                            <p:separator></p:separator>
+                                            <h:commandButton action="#{resultadoEvolucion.resultadosFinal()}"   class="btn btn-primary btn-flat m-b-30 m-t-30" value="Registrar Calificación"/>
+
+                                        </h:form>
+                                        <p:separator></p:separator>
+                                        <div class="login-logo">
+                                            <li class="btn  btn-outline-primary" style="color: blue;"><i class="fa fa-pencil-square-o"></i><a href="../evolucion/resultados.xhtml"> <b>EIngresar nueva calificación</b></a></li>
+                                        </div>
+
+                                        <div class="register-link m-t-15 text-center">
+                                            <p>Shreerleading Sports Information Systems</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div><!-- .animated -->
+            <!-- .animated -->
+
+
+        </ui:composition>
+
+
+
+    </h:body>
+</html>
+

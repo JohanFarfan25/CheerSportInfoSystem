@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" uuid="090769cf-8c22-4c87-bb3f-981392537f65">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#FFFFFF" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="personaReporte" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Acrobacia')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Animacion')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Baile')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('E_Introductorios')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Gimnasia')]]>
+	</queryString>
+	<field name="COUNT(*)" class="java.lang.Long"/>
+	<field name="Categoria_Ejercicio" class="java.lang.String">
+		<fieldDescription><![CDATA[Identificador numerico de la categoria ]]></fieldDescription>
+	</field>
+	<title>
+		<band height="104" splitType="Stretch">
+			<textField>
+				<reportElement x="35" y="81" width="340" height="23" uuid="c02ffe67-e94f-4557-b5aa-ef3f1d837ead"/>
+				<textElement>
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Report generated for : " + " " +$P{personaReporte}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="Title" mode="Opaque" x="2" y="0" width="800" height="67" forecolor="#FFFFFF" backcolor="#006699" uuid="4f68ed2e-2d60-44fc-abd3-40d5ce34ea36"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="36" isBold="false" pdfFontName="Helvetica"/>
+				</textElement>
+				<text><![CDATA[Cheerleading Sports Informatio System  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="187" y="67" width="568" height="37" uuid="85ecdc6d-1bc8-4657-aab9-b750b792b377"/>
+				<textElement textAlignment="Right">
+					<font size="26"/>
+				</textElement>
+				<text><![CDATA[EXERCISSES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="285" splitType="Stretch">
+			<bar3DChart>
+				<chart>
+					<reportElement x="139" y="16" width="536" height="246" uuid="84cd4949-1da1-43da-b5f1-da67aaca3283"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{Categoria_Ejercicio}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{COUNT(*)}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{COUNT(*)}]]></valueExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="39" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="2" y="3" width="800" height="36" forecolor="#D0B48E" backcolor="#006699" uuid="15e00bd9-ab4f-4b9c-a4fa-9b94e3408c96"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="753" y="0" width="40" height="16" forecolor="#FFFFFF" uuid="e490ad8d-ba2e-4f43-ac99-06054571cf18"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="673" y="0" width="80" height="16" forecolor="#FFFFFF" uuid="3d6f0b60-7a02-4357-aa53-987d6a4b6249"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="11" y="0" width="314" height="16" forecolor="#FFFFFF" uuid="4ca1d7ce-70df-49fa-9afd-b0ec9629d92d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="12" isBold="false" pdfFontName="Helvetica"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Report generated on the day" + "" + new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

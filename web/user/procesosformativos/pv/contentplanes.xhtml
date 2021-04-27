@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:body>
+
+        <ui:composition>
+            <div class="breadcrumbs">
+                <div class="breadcrumbs-inner">
+                    <div class="row m-0">
+                        <div class="col-sm-4">
+                            <div class="page-header float-left">
+                                <div class="page-title">
+                                    <h1>${panel}</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="page-header float-right">
+                                <div class="page-title">
+                                    <ol class="breadcrumb text-right">
+                                        <li><a href="../privatepage.xhtml">Home session</a></li>
+                                        <li class="active"><a href="#">${panel}</a></li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content">
+                <div class="form-group text-center">   
+                    <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>  
+                </div> 
+                <div class="animated fadeIn">
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="card">
+                                <div class="card-header btn bg-blue btn-primary btn-block">
+                                    <strong class="card-title">Plan de Entrenamiento</strong>
+                                </div>
+                                <div class="card-body">
+
+                                    <h:form>
+                                        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Id Plan</th>
+                                                    <th>Entrenador</th>
+                                                    <th>Deportista</th>
+                                                    <th>Nivel</th>
+                                                    <th>Fecha de Inicio</th>
+                                                    <th>Fecha final</th>
+                                                    <th>Estado</th>
+                                                    <th>Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                <c:forEach items="#{PlanDeEntrenamientoController.items}" var="plan">
+                                                    <c:if test="#{plan.idDeportista.codigo.email == loginView.authenticatedUser.email}">
+                                                        <tr>
+                                                            <td>#{plan.idPlan} </td>
+                                                            <td>#{plan.idEntrenador.codigo.nombre}</td>
+                                                            <td>#{plan.idDeportista.codigo.nombre}</td>
+                                                            <td>#{plan.idNivel.nombreNivel}</td>
+                                                            <td>
+                                                                <h:outputText value="#{plan.fechaInicio}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td>
+                                                                <h:outputText value="#{plan.fechaFinal}">
+                                                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                                                </h:outputText>
+                                                            </td>
+                                                            <td>#{plan.estado}</td>
+                                                            <td>
+
+                                                                <h:commandButton  action="#{PlanDeEntrenamientoController.leerPlan(plan)}" style="margin-right: 10px" class="btn btn-outline-primary btn-block" onclick="$('#btnModal').click();" value="Ver">
+                                                                    <f:ajax render=":formModal"></f:ajax>
+                                                                </h:commandButton>
+
+                                                            </td>
+                                                        </tr>
+                                                    </c:if>
+                                                </c:forEach>    
+
+
+
+                                            </tbody>
+                                        </table>
+                                    </h:form>
+                                </div>
+                                <hr/>
+                                <div class="row">
+                                    <div  class="col-md-8">
+
+                                    </div>
+
+                                    <div  class="col-md-2">
+
+                                        <button type="button" style="display: none" id="btnModal" class="btn btn-secondary mb-1" data-toggle="modal" data-target="#actualizarModal">
+                                            Edit 
+                                        </button>
+
+                                    </div>
+
+
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div>
+                </div><!-- .animated -->
+            </div><!-- .content -->
+
+
+            <div class="modal fade col-sm-12" id="actualizarModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header btn bg-blue btn-primary btn-block">
+                            <h5 class="modal-title" id="mediumModalLabel" style="font-size: 40px; font-family: fantasy;">Plan de Entrenamiento</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+                            </button>
+                        </div>
+                        <div class="content contentplan d-flex justify-content-between">
+                            <c:forEach items="#{PlanDeEntrenamientoController.items}" var="plan">
+                                <c:if test="#{plan.idDeportista.codigo.email == loginView.authenticatedUser.email}">
+                                    <h:form class="col-sm-4">
+                                        <div class="form-group">
+                                            <label for="cc-payment" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="ti ti-agenda" style="color: #8e8e8e;"/> Id Plan</label>
+                                            <input id="cc-payment" disabled="true" name="cc-payment" type="text"  class="form-control" aria-required="true" aria-invalid="false" value="#{plan.idPlan}"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="cc-docu" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-male" style="color: #8e8e8e;"/> Entrenador</label>
+                                            <input id="cc-docu" disabled="true" name="cc-docu" type="text"  class="form-control" aria-required="true" aria-invalid="false" value="#{plan.idEntrenador.codigo.nombre}"/>
+                                        </div>
+
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu1" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa fa-male" style="color: #8e8e8e;"/> Deportista</label>
+                                            <input id="cc-docu1" disabled="true" name="cc-docu1"  type="text" class="form-control" aria-required="true" aria-invalid="false" value="#{plan.idDeportista.codigo.nombre}"/>
+
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu2" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-trophy" style="color: #8e8e8e;"/> Nivel</label>
+                                            <input id="cc-docu2" disabled="true" name="cc-docu2" type="text"  class="form-control" aria-required="true" aria-invalid="false" value="#{plan.idNivel.nombreNivel}"/>
+
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu3" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-clock-o" style="color: #8e8e8e;"/> Fceha de inicio</label>
+                                            <h:inputText id="cc-docu3" html5:disabled="true" html5:name="cc-docu3" html5:type="text" class="form-control" html5:aria-required="true" html5:aria-invalid="false" value="#{plan.fechaInicio}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:inputText>
+
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu4" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-clock-o" style="color: #8e8e8e;"/> Fecha final</label>
+                                            <h:inputText id="cc-docu4" html5:disabled="true" html5:name="cc-docu4" html5:type="text" class="form-control" html5:aria-required="true" html5:aria-invalid="false" value="#{plan.fechaFinal}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            </h:inputText>
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu20" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e;"><i class="fa  fa-outdent" style="color: #8e8e8e;"/> Recomendaciones</label>
+                                            <p:inputTextarea id="cc-docu20" disabled="true" html5:name="cc-docu20" html5:type="text" class="form-control" html5:aria-required="true" html5:aria-invalid="false" style="text-align: justify" value="#{plan.recomendaciones}"/>
+
+                                        </div>
+
+                                        <p:separator></p:separator>
+
+                                        <div>
+                                            <button type="button" class="btn bg-blue btn-primary btn-block" data-dismiss="modal">Regresar</button>
+                                        </div>
+
+                                    </h:form>
+
+                                    <h:form class="col-sm-8">
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu5" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-gamepad" style="color: #8e8e8e;"/> Ejercicio 1</label>
+                                            <input id="cc-docu5" disabled="true" name="cc-docu5" type="text" class="form-control" aria-required="true" aria-invalid="false" style="text-align: justify" value="#{plan.idEjercicio1.nombreEjercicio}"/>                                       
+                                            <h:outputText value="#{plan.idEjercicio1.descripcion}"/>
+                                        </div>
+
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu6" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-gamepad" style="color: #8e8e8e;"/> Ejercicio 2</label>
+                                            <input id="cc-docu6" disabled="true" name="cc-docu6" type="text" class="form-control" aria-required="true" aria-invalid="false" style="text-align: justify" value="#{plan.idEjercicio2.nombreEjercicio}"/>                                          
+                                            <h:outputText value="#{plan.idEjercicio2.descripcion}"/>
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu7" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-gamepad" style="color: #8e8e8e;"/> Ejercicio 3</label>
+                                            <input id="cc-docu7" disabled="true" name="cc-docu7" type="text" class="form-control" aria-required="true" aria-invalid="false" style="text-align: justify" value="#{plan.idEjercicio3.nombreEjercicio}"/>                                         
+                                            <h:outputText value="#{plan.idEjercicio3.descripcion}"/>
+                                        </div>
+
+                                        <div class="form-group has-success">
+                                            <label for="cc-docu8" class="control-label mb-1" style="font-size: 20px; font-family: fantasy; color: #8e8e8e; "><i class="fa  fa-gamepad" style="color: #8e8e8e;"/> Ejercicio 4</label>
+                                            <input id="cc-docu8" disabled="true" name="cc-docu8" type="text" class="form-control" aria-required="true" aria-invalid="false" style="text-align: justify" value="#{plan.idEjercicio4.nombreEjercicio}"/>                                          
+                                            <h:outputText value="#{plan.idEjercicio4.descripcion}"/>
+                                        </div>
+
+
+                                    </h:form>
+
+
+
+                                </c:if>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </ui:composition>
+
+
+    </h:body>
+</html>
+

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formEjercicios">
+            <br />
+            <p:messages id="mensaje" severity="info, fatal" showSummary="true" showDetail="true"/>  
+
+            <p:fieldset legend="Crear Plan De Entrenamiento">
+                <h:panelGrid columns="3" id="pgDatos">
+                    
+                    <p:outputLabel for="txtIdEntrenador" value="Entrenador"/>
+                    <h:panelGrid columns="2">
+                        <p:inputText required="true" readonly="true" id="txtIdEntrenador" value="#{PlanDeEntrenamientoJpaController.stringEntrenador()}"/>
+                        <p:commandButton value="+" oncomplete="PF('dlg12').show();"  update=":DlgFrm2"/>
+                    </h:panelGrid>
+                    <p:message for="txtIdEntrenador"/>
+
+                    <p:outputLabel for="txtIdDeportista" value="Deportista"/>
+                    <h:panelGrid columns="2">
+                        <p:inputText required="true" readonly="true" id="txtIdDeportista" value="#{PlanDeEntrenamientoJpaController.stringDeportista()}"/>
+                        <p:commandButton value="+" oncomplete="PF('dlg1').show();"  update=":DlgFrm"/>
+                    </h:panelGrid>
+                    <p:message for="txtIdDeportista"/>
+
+                    <p:outputLabel for="txtidNivel" value="idNivel"/>                    
+                    <p:selectOneMenu required="true" id="txtidNivel" value="#{PlanDeEntrenamientoJpaController.selected.idNivel.idNivel}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.niveles}" var="n" itemLabel="#{n.nombreNivel}" itemValue="#{n.idNivel}" />
+                    </p:selectOneMenu>
+
+                    <p:message for="txtidNivel"/>
+
+                    <p:outputLabel for="txtFecha_Inicio" value="Fecha De Inicio"/>
+                    <p:calendar id="txtFecha_Inicio" value="#{PlanDeEntrenamientoJpaController.selected.fechaInicio}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtFecha_Inicio"/>
+
+                    <p:outputLabel for="txtFecha_Final" value="Fecha Final"/>
+                    <p:calendar id="txtFecha_Final" value="#{PlanDeEntrenamientoJpaController.selected.fechaFinal}" required="true" requiredMessage="Campo requerido"/>
+                    <p:message for="txtFecha_Final"/>
+
+
+
+                    <p:outputLabel for="txtComprobante_De_Pago" value="Comprobante De Pago"/> 
+                    <p:selectOneMenu id="txtComprobante_De_Pago" value="#{PlanDeEntrenamientoJpaController.selected.comprobanteDePago}" required="true" requiredMessage="Campo requerido">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemValue="Realizado" itemLabel="Realizado"/>
+                        <f:selectItem itemValue="No_Realizado" itemLabel="No_Realizado"/>   
+                    </p:selectOneMenu>
+                    <p:message for="txtComprobante_De_Pago"/>
+
+
+                    <p:outputLabel for="txtEstado" value="Estado"/> 
+                    <p:selectOneMenu id="txtEstado" value="#{PlanDeEntrenamientoJpaController.selected.estado}" required="true" requiredMessage="Campo requerido">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItem itemValue="Activo" itemLabel="Activo"/>
+                        <f:selectItem itemValue="Inactivo" itemLabel="Inactivo"/>   
+                    </p:selectOneMenu>
+                    <p:message for="txtEstado"/>
+
+                    <p:outputLabel for="txtIdEjercicio_1" value="Ejercicio1"/>                          
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_1" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio1.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_1"/>
+
+                    <p:outputLabel for="txtIdEjercicio_2" value="Ejercicio2"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_2" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio2.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_2"/>
+
+                    <p:outputLabel for="txtIdEjercicio_3" value="Ejercicio3"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_3" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio3.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_3"/>
+
+                    <p:outputLabel for="txtIdEjercicio_4" value="Ejercicio4"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_4" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio4.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_4"/>
+
+                </h:panelGrid>  
+
+
+                <p:commandButton icon="ui-icon-check" value="Asignar" actionListener="#{PlanDeEntrenamientoJpaController.registrar()}" update="pgDatos, mensaje" />
+
+            </p:fieldset>
+
+
+
+        </h:form>
+
+
+        <h:form id="DlgFrm">
+
+            <p:dialog  id="dlg1"  widgetVar="dlg1">
+                <p:dataTable id="datos"  value="#{PlanDeEntrenamientoJpaController.usuarios}" var="usr"> 
+                    <p:column>
+                        <p:commandButton  update=":formEjercicios" value="Seleccionar" oncomplete="PF('dlg1').hide()" actionListener="#{PlanDeEntrenamientoJpaController.selected.setIdDeportista(usr)}"/>     
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <h:outputText value="#{usr.codigo.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Apellidos" >
+                        <h:outputText value="#{usr.codigo.apellidos}"/>
+                    </p:column>
+                    <p:column headerText="Sexo" >
+                        <h:outputText value="#{usr.codigo.sexo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" >
+                        <h:outputText value="#{usr.tipo}"/>
+                    </p:column>
+
+                </p:dataTable>                                
+            </p:dialog>
+        </h:form>
+
+        <h:form id="DlgFrm2">
+
+            <p:dialog  id="dlg12"  widgetVar="dlg12">
+                <p:dataTable id="datos1"  value="#{PlanDeEntrenamientoJpaController.entrenador}" var="Entre"> 
+                    <p:column>
+                        <p:commandButton  update=":formEjercicios" value="Seleccionar" oncomplete="PF('dlg12').hide()" actionListener="#{PlanDeEntrenamientoJpaController.selected.setIdEntrenador(Entre)}"/>     
+                    </p:column>
+                    <p:column headerText="Nombre" >
+                        <h:outputText value="#{Entre.codigo.nombre}"/>
+                    </p:column>
+                    <p:column headerText="Apellidos" >
+                        <h:outputText value="#{Entre.codigo.apellidos}"/>
+                    </p:column>
+                    <p:column headerText="Sexo" >
+                        <h:outputText value="#{Entre.codigo.sexo}"/>
+                    </p:column>
+                    <p:column headerText="Tipo" >
+                        <h:outputText value="#{Entre.tipo}"/>
+                    </p:column>
+
+                </p:dataTable>                                
+            </p:dialog>
+        </h:form>
+
+
+        <hr/>
+
+        <h:form id="form" >
+            <p:fieldset legend="Planes De Entrenamiento">
+
+                <p:dataTable id="tbl" var="Pl" value="#{PlanDeEntrenamientoJpaController.items}"
+                             paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                             paginator="true" rows="10" style="margin-bottom:20px">
+
+                    <p:column class="id" filterBy="#{Pl.idPlan} " headerText="idPlan"   filterMatchMode="contains">
+                        <f:facet name="header">
+                            <h:outputText value="Id Plan" />
+                        </f:facet>
+                        <h:outputText value="#{Pl.idPlan}" />
+                    </p:column>
+                    
+                    <p:column filterBy="#{Pl.idEntrenador.codigo.nombre}" headerText="idEntrenador"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Entrenador"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idEntrenador.codigo.nombre}" />
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.idDeportista.codigo.nombre}" headerText="idDeportista"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Deportista"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idDeportista.codigo.nombre}" />
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.idNivel.nombreNivel}" headerText="idNivel"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Nivel"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idNivel.nombreNivel}" />
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.fechaCreacion}" headerText="fechaCreacion"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="F.Creacion"/>
+
+                        </f:facet>
+                        <h:outputText value="#{Pl.fechaCreacion}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.fechaInicio}" headerText="fechaInicio"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="F.Inicio"/>
+
+                        </f:facet>
+                        <h:outputText value="#{Pl.fechaInicio}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.fechaFinal}" headerText="fechaFinal"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="F.Final"/>
+
+                        </f:facet>
+                        <h:outputText value="#{Pl.fechaFinal}" >
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.estado}" headerText="estado"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Estado"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.estado}" />
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.idEjercicio1.nombreEjercicio}" headerText="idEjercicio1"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Ejercicio1"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idEjercicio1.nombreEjercicio}" />
+                    </p:column>
+
+
+                    <p:column filterBy="#{Pl.idEjercicio2.nombreEjercicio}" headerText="idEjercicio2"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Ejercicio2"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idEjercicio2.nombreEjercicio}" />
+                    </p:column>
+
+
+                    <p:column filterBy="#{Pl.idEjercicio3.nombreEjercicio}" headerText="idEjercicio3"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Ejercicio3"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idEjercicio3.nombreEjercicio}" />
+                    </p:column>
+
+                    <p:column filterBy="#{Pl.idEjercicio4.nombreEjercicio}" headerText="idEjercicio4"   filterMatchMode="contains"> 
+                        <f:facet name="header">
+                            <h:outputText value="Ejercicio4"/>
+                        </f:facet>
+                        <h:outputText value="#{Pl.idEjercicio4.nombreEjercicio}" />
+                    </p:column>
+  
+
+                    <p:column  headerText="Acciones"  exportable="false" >
+                        <p:commandButton  style="margin-left: 5%"  icon="ui-icon-pencil" title="Modificar"  actionListener="#{PlanDeEntrenamientoJpaController.leer(Pl)}" oncomplete="PF('wdialogo2').show();" update=":dialogo2"/>
+
+
+                    </p:column>
+                    
+                    
+
+                </p:dataTable>
+
+            </p:fieldset>
+
+        </h:form>
+
+
+
+        <p:dialog   header="Datos" widgetVar="wdialogo2" id="dialogo2"  resizable="true" width="800">
+            <h:form id="formulario">
+
+
+
+                <h:panelGrid columns="2">
+
+                    <p:outputLabel value="Id Del Plan"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.idPlan}" />
+
+                    <p:outputLabel value="Deportista"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.idDeportista.codigo.nombre}" />
+                    
+                    <p:outputLabel value="Entrenador"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.idEntrenador.codigo.nombre}" />
+                    
+                    <p:outputLabel value="Comprobante"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.comprobanteDePago}" />
+
+                    <p:outputLabel value="Estado"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.estado}" />
+                    
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="2">
+                    <p:outputLabel for="txtidNivel" value="Nivel"/>                    
+                    <p:selectOneMenu required="true" id="txtidNivel" value="#{PlanDeEntrenamientoJpaController.selected.idNivel.idNivel}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.niveles}" var="n" itemLabel="#{n.nombreNivel}" itemValue="#{n.idNivel}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtidNivel"/>
+                    </h:panelGrid>
+                    
+                    
+                    <h:panelGrid columns="2">
+                    <p:outputLabel value="Creacion"/>
+                    <h:outputText value="#{PlanDeEntrenamientoJpaController.selected.fechaCreacion}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+     
+                    <p:outputLabel value="Inicio"/>
+                    <h:inputText value="#{PlanDeEntrenamientoJpaController.selected.fechaInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+
+                    <p:outputLabel value="Final"/>
+                    <h:inputText value="#{PlanDeEntrenamientoJpaController.selected.fechaFinal}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                    </h:panelGrid>
+                    
+                    
+                    <h:panelGrid columns="3">
+                        
+                    <p:outputLabel for="txtIdEjercicio_1" value="Ejercicio1"/>                          
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_1" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio1.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_1"/>
+
+                    <p:outputLabel for="txtIdEjercicio_2" value="Ejercicio2"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_2" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio2.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_2"/>
+
+                    <p:outputLabel for="txtIdEjercicio_3" value="Ejercicio3"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_3" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio3.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_3"/>
+
+                    <p:outputLabel for="txtIdEjercicio_4" value="Ejercicio4"/>
+                    <p:selectOneMenu required="true" id="txtIdEjercicio_4" value="#{PlanDeEntrenamientoJpaController.selected.idEjercicio4.idEjercicios}">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{PlanDeEntrenamientoJpaController.ejercicios}" var="e" itemLabel="#{e.nombreEjercicio}" itemValue="#{e.idEjercicios}" />
+                    </p:selectOneMenu>
+                    <p:message for="txtIdEjercicio_4"/>
+                    </h:panelGrid>
+                    
+                    
+
+                
+
+
+
+                <p:commandButton  style="margin-left: 5%" value="Guardar" title="Guardar"  actionListener="#{PlanDeEntrenamientoJpaController.modificar()}" oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+
+                <p:commandButton  style="margin-left: 5%" value="Eliminar" title="Eliminar"  actionListener="#{PlanDeEntrenamientoJpaController.eliminar()}" oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+                
+
+            </h:form>
+
+        </p:dialog>
+
+
+
+    </h:body>
+</html>
+

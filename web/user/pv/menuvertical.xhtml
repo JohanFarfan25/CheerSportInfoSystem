@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:body>
+        <ui:composition>
+            <a href="../../../src/java/com/club/ejb/UserEJB.java"></a>
+
+            <nav class="navbar navbar-expand-sm navbar-default" >
+                <div id="main-menu" class="main-menu collapse navbar-collapse">
+                    <ul class="nav navbar-nav" >
+                        <li class="active">
+                            <a href="../index.html"><i class="menu-icon fa fa-laptop"></i>${panel} </a>
+                        </li>
+                        <li class="menu-title">My Modules</li><!-- /.menu-title -->
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>Mi Perfil</a>
+                            <ul class="sub-menu children dropdown-menu">                      
+                                <li><i class="fa fa-pencil-square-o"></i><a href="registroyadmision/usuarios.xhtml">Editar Perfil</a></li>
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-book"></i>Procesos formativos</a>
+                            <ul class="sub-menu children dropdown-menu">                           
+
+                                <li><i class="fa fa-id-card-o"></i><a href="procesosformativos/planesDenEtrenamiento.xhtml"> Consultar Plan</a></li>
+
+
+                            </ul>
+                        </li>
+                        <li class="menu-item-has-children dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart-o"></i>Seguimiento y evolución</a>
+                            <ul class="sub-menu children dropdown-menu">                           
+
+                                <li><i class="fa fa-tachometer"></i><a href="evolucion/evolucion.xhtml">Resultados</a></li>
+
+
+
+                            </ul>
+                        </li>
+
+
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </nav>
+
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,52 @@
+
+DELIMITER //
+CREATE PROCEDURE Nota1(IN id int, IN plan int, resultado int)
+BEGIN
+INSERT INTO semana_1 VALUES(id,plan,1,resultado);
+END //
+DELIMITER ;
+___________________________________________________________
+DELIMITER //
+CREATE PROCEDURE Nota2(IN id int, IN plan int, resultado int)
+BEGIN
+INSERT INTO semana_2 VALUES(id,plan,2,resultado);
+END //
+DELIMITER ;
+___________________________________________________________
+DELIMITER //
+CREATE PROCEDURE Nota3(IN id int, IN plan int, resultado int)
+BEGIN
+INSERT INTO semana_3 VALUES(id,plan,3,resultado);
+END //
+DELIMITER ;
+___________________________________________________________
+DELIMITER //
+CREATE PROCEDURE Nota4(IN id int, IN plan int, resultado int)
+BEGIN
+INSERT INTO semana_4 VALUES(id,plan,4,resultado);
+END //
+DELIMITER ;
+________________________________________________________
+
+
+DELIMITER //
+CREATE PROCEDURE sp_notas(IN id int, IN plan int,'', IN resultado int, opc varchar(30))
+BEGIN 
+CASE opc
+WHEN 's1' THEN CALL nota1(id,plan,resultado);
+WHEN 's2' THEN call nota2(id,plan,resultado);
+WHEN 's3' THEN call nota3(id,plan,resultado);
+WHEN 's4' THEN call nota4(id,plan,resultado);
+end case;
+end //
+delimiter ; 
+______________________________________________________________________________
+DELIMITER //
+CREATE FUNCTION SF_calcularresultado( id int, s1 int,  s2 int,s3 int, s4 int)
+returns DOUBLE
+BEGIN
+DECLARE	res DOUBLE;
+SET res = (s1+s2+s3+s4)/4;
+RETURN res;
+END //
+DELIMITER ;

@@ -1,0 +1,162 @@
+
+
+SELECT * FROM `gargolasproject`.`semana_1` WHERE `IdSemana1` = 137
+
+SELECT * FROM `gargolasproject`.`plan_de_entrenamiento` WHERE `IdPlan` = 57
+
+
+**********DEPOSRTISTAS*************
+
+SELECT * FROM `usuario` WHERE Tipo = ('Deportista')
+
+SELECT COUNT(*) FROM `usuario` WHERE Tipo = ('Deportista')
+
+SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Deportista') UNION
+
+SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Entrenador') UNION
+
+SELECT
+     COUNT(*),
+     `Tipo` 
+FROM
+     `usuario` usuario
+WHERE
+     Tipo = ('Administrador') 
+
+
+**********Entrenador*************
+
+SELECT * FROM `usuario` WHERE Tipo = ('Entrenador')
+
+SELECT COUNT(*) FROM `usuario` WHERE Tipo = ('Entrenador')
+
+*********Administrador*************
+
+SELECT * FROM `usuario` WHERE Tipo = ('Administrador')
+
+SELECT COUNT(*) FROM `usuario` WHERE Tipo = ('Administrador')
+
+*********Resultados*************
+
+SELECT * FROM `resultados1` WHERE Resultado = ('Aprobado')
+SELECT COUNT(*) FROM `resultados1` WHERE Resultado = ('Aprobado')
+
+SELECT * FROM `resultados1` WHERE Resultado = ('Reprobado')
+SELECT COUNT(*) FROM `resultados1` WHERE Resultado = ('Reprobado')
+
+
+SELECT COUNT(*), 
+`Resultado` 
+FROM `resultados1` IdResultado 
+
+WHERE Resultado = ('Aprobado') 
+UNION 
+SELECT COUNT(*), 
+`Resultado` 
+FROM `resultados1` IdResultado 
+
+WHERE Resultado = ('Reprobado') 
+
+
+
+********Planes***************************
+
+
+SELECT COUNT(*), 
+`Estado` 
+FROM `plan_de_entrenamiento` IdPlan 
+
+WHERE Estado = ('Activo') 
+UNION 
+SELECT COUNT(*), 
+`Estado` 
+FROM `plan_de_entrenamiento` IdPlan 
+WHERE Estado = ('Inactivo') 
+
+
+**********Ejercicios******************
+
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Acrobacia')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Animacion')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Baile')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('E_Introductorios')
+UNION
+SELECT COUNT(*), 
+`Categoria_Ejercicio` 
+FROM `ejercicios` ejercicios 
+WHERE Categoria_Ejercicio = ('Gimnasia')
+
+
+
+
+
+
+SELECT
+     persona.`codigo` AS persona_codigo,
+     persona.`nombre` AS persona_nombre,
+     persona.`apellidos` AS persona_apellidos,
+     persona.`Telefono` AS persona_Telefono,
+     persona.`sexo` AS persona_sexo,
+     persona.`Tipo_Documento` AS persona_Tipo_Documento,
+     persona.`Documento` AS persona_Documento,
+     persona.`Edad` AS persona_Edad,
+     persona.`Factor_De_Riezgo` AS persona_Factor_De_Riezgo,
+     persona.`fechaNacimiento` AS persona_fechaNacimiento,
+     persona.`email` AS persona_email
+FROM
+     `persona` persona
+WHERE
+      persona.`codigo` = $P{codigo}
+
+
+Que el Cheer                                 con                      es    integrante del	
+Club, por lo cual este cubierto a nivel Nacional con el seguro de deportista de la USAF, y podrá ser atendido en cualquier centro médico.
+También goza de todos los beneficios con las empresas que tenemos convenio, como descuentos para ingreso a pedannas deportivas, cines, ligas, ropa y elementos deportivos.
+Por ultimo Representa el Club Deportivo en todos los Campeonatos a nivel Nacional y Mundial, construyéndose como uno de los mejores deportistas en el mundo del Cheerleading.
+
+
+***************************Delete Usuarios*********************************
+
+DELETE from `usuario` where `codigo`='197';
+
+DELETE from `persona`
+  where `codigo`='197';
+
+DELETE from `users`
+  where `email`='prueba2@gmail.com';
+
+DELETE from `user_groups`
+  where `email`='prueba2@gmail.com';
+
+
+
+
+
+

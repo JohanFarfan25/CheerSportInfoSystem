@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <h:form id="formInventario2" >
+             <br />
+            <p:messages id="mensaje" autoUpdate="false" severity="info, fatal" showSummary="true" showDetail="true"/>  
+            
+        <p:fieldset legend="Prestamo de Materiales" class="col-md-12">
+            <h:panelGrid columns="3" id="pgDatos">
+
+            
+            <p:outputLabel for="txtIdMaterial" value="Id Material"/>
+            <p:inputText class="col-md-8" id="txtIdMaterial" value="#{PrestamoJpaController.selec.idMaterial}" required="true" requiredMessage="Campo requerido"/>
+            <p:message for="txtIdMaterial"/>
+
+
+            <p:outputLabel for="txtIdEntrenador" value="Id Entrenador"/>
+            <p:inputText class="col-md-8" id="txtIdEntrenador" value="#{PrestamoJpaController.selec.idEntrenador}" required="true" requiredMessage="Campo requerido"/>
+            <p:message for="txtIdEntrenador"/>   
+
+            </h:panelGrid>  
+            
+            <hr/>
+                
+            <p:commandButton icon="ui-icon-check" value="Solicitar Material" actionListener="#{PrestamoJpaController.registrar()}" update="pgDatos, mensaje" />
+                
+            </p:fieldset>  
+            
+            
+            
+            
+        </h:form>
+                  
+                  <hr/>
+                  
+                  <h:form id="form4" >
+              <p:fieldset legend="Materiales Deportivos">
+      <p:dataTable id="tbl" var="inven" value="#{InventarioMaterialesJpaController.items}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         paginator="true" rows="5" style="margin-bottom:20px">
+
+          <p:column class="id" filterBy="#{inven.idMaterial} " headerText="idMaterial"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Id Del Material" />
+                    </f:facet>
+                    <h:outputText value="#{inven.idMaterial}" />
+                </p:column>
+          
+                   <p:column filterBy="#{inven.nombreMaterial}" headerText="nombreMaterial"   filterMatchMode="contains"> 
+                    <f:facet name="header">
+                        <h:outputText value="Nombre Del Material"/>
+                    </f:facet>
+                        <h:outputText value="#{inven.nombreMaterial}" />
+                </p:column>
+
+          
+                <p:column filterBy="#{inven.unidadesDisponibles}" headerText="unidadesDisponibles"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Unidades Disponibles"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.unidadesDisponibles}" />
+                </p:column >
+                
+                 <p:column filterBy="#{inven.categoria}" headerText="categoria"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Categoría"/>
+                    </f:facet>
+                    <h:outputText value="#{inven.categoria}" />
+                </p:column >
+      
+            </p:dataTable>
+</p:fieldset>  
+        </h:form>
+    
+    <hr/>
+    
+     <h:form id="form" class="col-md-8 d-flex justify-content-center">
+          <p:fieldset legend="Devolución de Materiales">
+            <p:dataTable id="tbl" var="pres" value="#{PrestamoJpaController.items}"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+                         paginator="true" rows="5" style="margin-bottom:20px">
+
+         
+                <p:column class="id" filterBy="#{pres.idMaterial} " headerText="idMaterial"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Id Del Material" />
+                    </f:facet>
+                    <h:outputText value="#{pres.idMaterial}" />
+                </p:column>
+          
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Fecha De Devolución"/>
+                    </f:facet>
+                    <h:outputText value="#{pres.fechaDevolucion}" >
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:outputText>
+                </p:column>
+ 
+                <p:column filterBy="#{pres.idEntrenador}" headerText="idEntrenador"   filterMatchMode="contains">
+                    <f:facet name="header">
+                        <h:outputText value="Id Del Entrenador"/>
+                    </f:facet>
+                    <h:outputText value="#{pres.idEntrenador}" />
+                </p:column >
+
+ 
+          
+                    <p:column  headerText="Acción"  exportable="false" >
+                        <p:commandButton  style="margin-left: 25%" value="Devolver" title="Modificar"  actionListener="#{PrestamoJpaController.setSelec(pres)}" oncomplete="PF('wdialogo2').show();" update=":dialogo2"/>
+                 <!--   <p:commandButton style="margin-left: 5%" icon=" ui-icon-pencil" title="Editar " actionListener="" oncomplete="PF('modal').show();"  />
+                    <p:commandButton  style="margin-left: 5%" icon=" ui-icon-cancel" title="Eliminar" actionListener="" oncomplete="PF('modal').show();" /> -->
+                </p:column> 
+                
+                
+            </p:dataTable>
+              </p:fieldset>
+        </h:form>
+        
+        
+       <p:dialog  header="Datos" widgetVar="wdialogo2" id="dialogo2"  resizable="true" width="800">
+            <h:form id="formulario">
+            
+                <h:panelGrid columns="4">
+                         
+                        <h2>!Realmente quiere devolver el material¡</h2>
+                        <br/>
+                        <p:commandButton  style="margin-left: 10%" value="Sí" title="Sí"  actionListener="#{PrestamoJpaController.devolver()}" oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+                         <br/> 
+                        <p:commandButton  style="margin-left: 10%" value="No" title="No"  oncomplete="PF('wdialogo2').hide();" update=":form:tbl"/>
+                </h:panelGrid>
+            </h:form>
+            
+        </p:dialog>
+    
+    </h:body>
+
+    
+</html>
+
